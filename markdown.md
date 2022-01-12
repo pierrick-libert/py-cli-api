@@ -1,0 +1,3 @@
+- Explain why I dynamically instantiated the module but not the method (dynamic arguments = bad - *args, **kwargs)
+- Explain the potential improvements
+- Talk about alambic
