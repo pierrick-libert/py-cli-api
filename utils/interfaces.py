@@ -1,7 +1,7 @@
 '''Create an interface to force module to implement the needed method for this program to work'''
 from abc import ABCMeta, abstractmethod
 from uuid import UUID
-from typing import Dict, Union
+from typing import Dict, List, TypedDict, Union
 
 
 class ModuleInterface(metaclass=ABCMeta):
@@ -16,5 +16,5 @@ class ModuleInterface(metaclass=ABCMeta):
         '''Implement a delete method to remove an object in DB'''
 
     @abstractmethod
-    def search(self, data: Dict[str, Union[str, int, float, bool]]) -> None:
+    def search(self, data: Dict[str, Union[str, int, float, bool]]) -> List[TypedDict]:
         '''Implement a search method to get object(s) from the DB'''

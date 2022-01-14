@@ -12,7 +12,7 @@ from models.market import MarketModel, MarketJSON
 class Market(ModuleInterface):
     '''Market class'''
 
-    def upsert(self, uuid: UUID, data: Dict[str, Union[str, int, float, bool]]) -> None:
+    def upsert(self, uuid: UUID, data: Dict[str, Union[str, int, float, bool]]) -> UUID:
         '''Upsert a Market'''
         model = DB.get_instance().get_upsert_data(MarketModel(id=uuid), data)
         if data.get('name', None):

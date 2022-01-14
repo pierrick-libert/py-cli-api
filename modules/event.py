@@ -12,7 +12,7 @@ from models.event import EventModel, EventJSON
 class Event(ModuleInterface):
     '''Event class'''
 
-    def upsert(self, uuid: UUID, data: Dict[str, Union[str, int, float, bool]]) -> None:
+    def upsert(self, uuid: UUID, data: Dict[str, Union[str, int, float, bool]]) -> UUID:
         '''Upsert a Event'''
         model = DB.get_instance().get_upsert_data(EventModel(id=uuid), data)
         if data.get('name', None):

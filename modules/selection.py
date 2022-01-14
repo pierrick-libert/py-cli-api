@@ -12,7 +12,7 @@ from models.selection import SelectionModel, SelectionJSON
 class Selection(ModuleInterface):
     '''Selection class'''
 
-    def upsert(self, uuid: UUID, data: Dict[str, Union[str, int, float, bool]]) -> None:
+    def upsert(self, uuid: UUID, data: Dict[str, Union[str, int, float, bool]]) -> UUID:
         '''Upsert a Selection'''
         model = DB.get_instance().get_upsert_data(SelectionModel(id=uuid), data)
         if data.get('name', None):
