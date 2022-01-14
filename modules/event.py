@@ -1,12 +1,12 @@
 '''Event class for business logic'''
 from uuid import UUID
-from typing import Dict, Union
+from typing import Dict, List, Union
 
 from utils.db import DB
 from utils.helper import Helper
 from utils.interfaces import ModuleInterface
 
-from models.event import EventModel
+from models.event import EventModel, EventJSON
 
 
 class Event(ModuleInterface):
@@ -31,7 +31,7 @@ class Event(ModuleInterface):
         '''Delete a Event'''
         DB.get_instance().delete(EventModel, uuid)
 
-    def search(self, data: Dict[str, Union[str, int, float, bool]]) -> None:
+    def search(self, data: Dict[str, Union[str, int, float, bool]]) -> List[EventJSON]:
         '''Search a Event'''
         results = []
         model_keys = EventModel.__table__.columns.keys()

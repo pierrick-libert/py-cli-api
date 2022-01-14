@@ -24,11 +24,11 @@ You can test the code by launching this command:
 make test
 ```
 
-*You need to have all environment variables set in order to launch the command above*
+*You need to have all environment variables set in order to launch the command above. You may use the file `.env.local`.*
 
 ## Launch Sample
 
-*You need to have all environment variables set in order to launch those commands*
+*You need to have all environment variables set in order to launch those commands. You may use the file `.env.local`.*
 
 ### Sport
 

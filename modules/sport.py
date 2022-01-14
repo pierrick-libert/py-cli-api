@@ -6,7 +6,7 @@ from utils.db import DB
 from utils.helper import Helper
 from utils.interfaces import ModuleInterface
 
-from models.sport import SportModel
+from models.sport import SportModel, SportJSON
 
 
 class Sport(ModuleInterface):
@@ -27,7 +27,7 @@ class Sport(ModuleInterface):
         '''Delete a sport'''
         DB.get_instance().delete(SportModel, uuid)
 
-    def search(self, data: List[Dict[str, Union[str, int, float, bool]]]) -> List[SportModel]:
+    def search(self, data: List[Dict[str, Union[str, int, float, bool]]]) -> List[SportJSON]:
         '''Search a sport'''
         results = []
         model_keys = SportModel.__table__.columns.keys()

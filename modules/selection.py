@@ -1,12 +1,12 @@
 '''Selection class for business logic'''
 from uuid import UUID
-from typing import Dict, Union
+from typing import Dict, List, Union
 
 from utils.db import DB
 from utils.helper import Helper
 from utils.interfaces import ModuleInterface
 
-from models.selection import SelectionModel
+from models.selection import SelectionModel, SelectionJSON
 
 
 class Selection(ModuleInterface):
@@ -29,7 +29,7 @@ class Selection(ModuleInterface):
         '''Delete a Selection'''
         DB.get_instance().delete(SelectionModel, uuid)
 
-    def search(self, data: Dict[str, Union[str, int, float, bool]]) -> None:
+    def search(self, data: Dict[str, Union[str, int, float, bool]]) -> List[SelectionJSON]:
         '''Search a Selection'''
         results = []
         model_keys = SelectionModel.__table__.columns.keys()

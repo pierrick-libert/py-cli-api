@@ -1,12 +1,12 @@
 '''Market class for business logic'''
 from uuid import UUID
-from typing import Dict, Union
+from typing import Dict, List, Union
 
 from utils.db import DB
 from utils.helper import Helper
 from utils.interfaces import ModuleInterface
 
-from models.market import MarketModel
+from models.market import MarketModel, MarketJSON
 
 
 class Market(ModuleInterface):
@@ -27,7 +27,7 @@ class Market(ModuleInterface):
         '''Delete a Market'''
         DB.get_instance().delete(MarketModel, uuid)
 
-    def search(self, data: Dict[str, Union[str, int, float, bool]]) -> None:
+    def search(self, data: Dict[str, Union[str, int, float, bool]]) -> List[MarketJSON]:
         '''Search a Market'''
         results = []
         model_keys = MarketModel.__table__.columns.keys()

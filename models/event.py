@@ -2,6 +2,7 @@
 from uuid import uuid4
 from enum import Enum
 from datetime import datetime
+from typing import TypedDict
 
 from sqlalchemy import Column, func, ForeignKey
 from sqlalchemy.orm import relationship
@@ -24,6 +25,20 @@ class EventStatus(Enum):
     INPLAY = 'INPLAY'
     PREPLAY = 'PREPLAY'
     ENDED = 'ENDED'
+
+
+class EventJSON(TypedDict):
+    '''JSON for event'''
+    id: str
+    sport_id: str
+    name: str
+    display_name: str
+    slug: str
+    type: EventType
+    status: EventStatus
+    is_active: bool
+    created_at: str
+    updated_at: str
 
 
 class EventModel(DB.get_instance().get_base()):
@@ -60,7 +75,7 @@ class EventModel(DB.get_instance().get_base()):
     )
 
     @classmethod
-    def obj_to_json(cls, obj):
+    def obj_to_json(cls, obj) -> EventJSON:
         '''Obj to json'''
         return {
             'id': str(obj.id),
@@ -75,7 +90,7 @@ class EventModel(DB.get_instance().get_base()):
             'updated_at': obj.updated_at.strftime('%Y-%m-%d %H:%M')
         }
 
-    def to_json(self):
+    def to_json(self) -> EventJSON:
         '''To json method'''
         return {
             'id': str(self.id),
@@ -90,6 +105,6 @@ class EventModel(DB.get_instance().get_base()):
             'updated_at': self.updated_at.strftime('%Y-%m-%d %H:%M')
         }
 
-    def __str__(self):
+    def __str__(self) -> str:
         '''Return string'''
         return f'{str(self.id)} - {self.name}'

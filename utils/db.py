@@ -44,7 +44,8 @@ class DB:
     def get_instance():
         '''To avoid decorator error with pylint'''
 
-    def get_operators(self, operator: str):
+    # pylint: disable=no-self-use
+    def get_operators(self, operator: str) -> str:
         '''Get the list of basic allowed operators'''
         sql_operator = None
         if operator in ['=', '>', '<', '>=', '<=', 'like', 'ilike', 'in']:
@@ -60,7 +61,7 @@ class DB:
 
         return sql_operator
 
-    def get_condition(self, operator: str, field: str, prefix: str, value):
+    def get_condition(self, operator: str, field: str, prefix: str, value) -> str:
         '''Return the condition we need to use in a where'''
         query = ''
         operator = self.get_operators(operator)
@@ -79,10 +80,11 @@ class DB:
             query = f'{prefix}.{field} {operator} ' + '\'' + str(value) + '\''
         return query
 
+    # pylint: disable=no-self-use
     def build_where(
             self, prefix: str, model_keys: List[str],
             data: List[Dict[str, Union[str, int, float, bool]]]
-        ):
+        ) -> str:
         '''Build the where condition for search on models'''
         where_query = ''
         for obj in data:

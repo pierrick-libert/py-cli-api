@@ -124,12 +124,12 @@ with DB.get_instance().get_session() as session:
             END;
         $check_upsert_selection$ LANGUAGE plpgsql;
 
-        DROP TRIGGER IF EXISTS check_insert_market ON selection;
+        DROP TRIGGER IF EXISTS check_insert_selection ON selection;
         CREATE TRIGGER check_insert_selection
             AFTER INSERT ON selection
             FOR EACH ROW
             EXECUTE FUNCTION check_upsert_selection();
-        DROP TRIGGER IF EXISTS check_update_market ON selection;
+        DROP TRIGGER IF EXISTS check_update_selection ON selection;
         CREATE TRIGGER check_update_selection
             AFTER UPDATE ON selection
             FOR EACH ROW

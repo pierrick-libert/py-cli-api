@@ -1,6 +1,7 @@
 '''Market Model'''
 from uuid import uuid4
 from datetime import datetime
+from typing import TypedDict
 
 from sqlalchemy import Column, func, ForeignKey
 from sqlalchemy.orm import relationship
@@ -10,6 +11,21 @@ from sqlalchemy.dialects.postgresql import UUID
 from utils.db import DB
 
 from .event import EventModel
+
+
+class MarketJSON(TypedDict):
+    '''JSON for market'''
+    id: str
+    event_id: str
+    name: str
+    display_name: str
+    slug: str
+    order: int
+    schema: int
+    columns: int
+    is_active: bool
+    created_at: str
+    updated_at: str
 
 
 class MarketModel(DB.get_instance().get_base()):
@@ -47,7 +63,7 @@ class MarketModel(DB.get_instance().get_base()):
     )
 
     @classmethod
-    def obj_to_json(self, obj):
+    def obj_to_json(cls, obj) -> MarketJSON:
         '''Obj to json'''
         return {
             'id': str(obj.id),
@@ -55,6 +71,7 @@ class MarketModel(DB.get_instance().get_base()):
             'name': obj.name,
             'display_name': obj.display_name,
             'slug': obj.slug,
+            'order': obj.order,
             'schema': obj.schema,
             'columns': obj.columns,
             'is_active': obj.is_active,
@@ -62,7 +79,7 @@ class MarketModel(DB.get_instance().get_base()):
             'updated_at': obj.updated_at.strftime('%Y-%m-%d %H:%M')
         }
 
-    def to_json(self):
+    def to_json(self) -> MarketJSON:
         '''To json method'''
         return {
             'id': str(self.id),
@@ -70,6 +87,7 @@ class MarketModel(DB.get_instance().get_base()):
             'name': self.name,
             'display_name': self.display_name,
             'slug': self.slug,
+            'order': self.order,
             'schema': self.schema,
             'columns': self.columns,
             'is_active': self.is_active,
@@ -77,6 +95,6 @@ class MarketModel(DB.get_instance().get_base()):
             'updated_at': self.updated_at.strftime('%Y-%m-%d %H:%M')
         }
 
-    def __str__(self):
+    def __str__(self) -> str:
         '''Return string'''
         return f'{str(self.id)} - {self.name}'

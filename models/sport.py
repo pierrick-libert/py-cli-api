@@ -1,6 +1,7 @@
 '''Sport Model'''
 from uuid import uuid4
 from datetime import datetime
+from typing import TypedDict
 
 from sqlalchemy import Column, func
 from sqlalchemy.orm import relationship
@@ -8,6 +9,18 @@ from sqlalchemy.types import String, SmallInteger, DateTime, Boolean
 from sqlalchemy.dialects.postgresql import UUID
 
 from utils.db import DB
+
+
+class SportJSON(TypedDict):
+    '''JSON for sport'''
+    id: str
+    name: str
+    display_name: str
+    slug: str
+    order: int
+    is_active: bool
+    created_at: str
+    updated_at: str
 
 
 class SportModel(DB.get_instance().get_base()):
@@ -37,7 +50,7 @@ class SportModel(DB.get_instance().get_base()):
     )
 
     @classmethod
-    def obj_to_json(cls, obj):
+    def obj_to_json(cls, obj) -> SportJSON:
         '''Obj to json'''
         return {
             'id': str(obj.id),
@@ -50,7 +63,7 @@ class SportModel(DB.get_instance().get_base()):
             'updated_at': obj.updated_at.strftime('%Y-%m-%d %H:%M')
         }
 
-    def to_json(self):
+    def to_json(self) -> SportJSON:
         '''To json method'''
         return {
             'id': str(self.id),
