@@ -8,11 +8,11 @@ class ModuleInterface(metaclass=ABCMeta):
     '''Module interface'''
 
     @abstractmethod
-    def upsert(self, id: UUID, data: Dict[str, Union[str, int, float, bool]]) -> None:
+    def upsert(self, uuid: UUID, data: Dict[str, Union[str, int, float, bool]]) -> None:
         '''Implement an upsert method to insert or update an object in DB'''
 
     @abstractmethod
-    def delete(self, id: UUID) -> None:
+    def delete(self, uuid: UUID) -> None:
         '''Implement a delete method to remove an object in DB'''
 
     @abstractmethod

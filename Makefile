@@ -12,7 +12,7 @@ install:
 	. env/bin/activate && python init_db.py
 
 lint:
-	. env/bin/activate && pylint --fail-under 9.0 --disable=duplicate-code *.py utils/*.py
+	. env/bin/activate && pylint --fail-under 9.0 --disable=duplicate-code *.py utils/*.py models/*.py modules/*.py
 
 test:
 	. env/bin/activate && python test.py 

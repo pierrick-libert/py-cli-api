@@ -4,6 +4,7 @@ import re
 from typing import Optional
 
 
+# pylint: disable=too-few-public-methods
 class Helper:
     '''Helper class'''
 
