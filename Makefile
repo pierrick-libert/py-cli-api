@@ -14,8 +14,5 @@ install:
 lint:
 	. env/bin/activate && pylint --fail-under 9.0 --disable=duplicate-code *.py utils/*.py models/*.py modules/*.py
 
-test:
-	. env/bin/activate && python test.py 
-
 greenkeeping:
 	. env/bin/activate && pur -r requirements.txt
