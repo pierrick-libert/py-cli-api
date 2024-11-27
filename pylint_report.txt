@@ -1,0 +1,108 @@
+
+
+Report
+======
+324 statements analysed.
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |11     |11         |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |16     |16         |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|method   |24     |24         |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|function |0      |NC         |NC         |0           |0        |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+External dependencies
+---------------------
+::
+
+    models (models.event,models.market,models.selection,models.sport)
+      \-event (models.market,modules.event)
+      \-market (models.selection,modules.market)
+      \-selection (modules.selection)
+      \-sport (models.event,modules.sport)
+    sqlalchemy (models.event,models.market,models.selection,models.sport)
+      \-dialects 
+      | \-postgresql (models.event,models.market,models.selection,models.sport)
+      \-exc (main)
+      \-orm (models.event,models.market,models.selection,models.sport)
+      \-types (models.event,models.market,models.selection,models.sport)
+    utils (models.event,models.market,models.selection,models.sport)
+      \-db (modules.event,modules.market,modules.selection,modules.sport)
+      \-helper (modules.event,modules.market,modules.selection,modules.sport)
+      \-interfaces (modules.event,modules.market,modules.selection,modules.sport)
+      \-parsers (main)
+
+
+
+1056 lines have been analyzed
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |399    |37.78 |399      |=          |
++----------+-------+------+---------+-----------+
+|docstring |497    |47.06 |144      |+353.00    |
++----------+-------+------+---------+-----------+
+|comment   |41     |3.88  |41       |=          |
++----------+-------+------+---------+-----------+
+|empty     |119    |11.27 |119      |=          |
++----------+-------+------+---------+-----------+
+
+
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |0     |0        |0          |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.000 |0.000    |=          |
++-------------------------+------+---------+-----------+
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |0      |0        |0          |
++-----------+-------+---------+-----------+
+|refactor   |0      |0        |0          |
++-----------+-------+---------+-----------+
+|warning    |0      |0        |0          |
++-----------+-------+---------+-----------+
+|error      |0      |0        |0          |
++-----------+-------+---------+-----------+
+
+
+
+Messages
+--------
+
++-----------+------------+
+|message id |occurrences |
++===========+============+
+
+
+
+
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+
