@@ -1,16 +1,16 @@
-'''Script launch when you install the project through `make install`'''
-from models.sport import SportModel
-from models.event import EventModel, EventType, EventStatus
+"""Script launch when you install the project through `make install`"""
+
+from models.event import EventModel, EventStatus, EventType
 from models.market import MarketModel
 from models.selection import SelectionModel, SelectionOutcome
-
+from models.sport import SportModel
 from utils.db import DB
 
 # We're doing a simple creation of tables with no migrations
 # Check `markdown.md` to understand how it could be improved
-DB.get_instance().create_enum(EventType, 'eventtype')
-DB.get_instance().create_enum(EventStatus, 'eventstatus')
-DB.get_instance().create_enum(SelectionOutcome, 'selectionoutcome')
+DB.get_instance().create_enum(EventType, "eventtype")
+DB.get_instance().create_enum(EventStatus, "eventstatus")
+DB.get_instance().create_enum(SelectionOutcome, "selectionoutcome")
 DB.get_instance().create_table_from_model(SportModel())
 DB.get_instance().create_table_from_model(EventModel())
 DB.get_instance().create_table_from_model(MarketModel())
@@ -19,7 +19,8 @@ DB.get_instance().create_table_from_model(SelectionModel())
 # Then we create the trigger and function
 with DB.get_instance().get_session() as session:
     # Create TRIGGER and FUNCTION for SportModel
-    session.execute('''
+    session.execute(
+        """
         CREATE OR REPLACE FUNCTION check_update_sport() RETURNS TRIGGER AS $check_update_sport$
             BEGIN
                 -- Update the events if sport is disabled
@@ -36,10 +37,12 @@ with DB.get_instance().get_session() as session:
             FOR EACH ROW
             WHEN (OLD.is_active IS DISTINCT FROM NEW.is_active)
             EXECUTE FUNCTION check_update_sport();
-    ''')
+    """
+    )
 
     # Create TRIGGER and FUNCTION for EventModel
-    session.execute('''
+    session.execute(
+        """
         CREATE OR REPLACE FUNCTION check_upsert_event() RETURNS TRIGGER AS $check_upsert_event$
             DECLARE
                 is_active BOOL;
@@ -70,11 +73,12 @@ with DB.get_instance().get_session() as session:
             FOR EACH ROW
             WHEN (OLD.is_active IS DISTINCT FROM NEW.is_active)
             EXECUTE FUNCTION check_upsert_event();
-    ''')
-
+    """
+    )
 
     # Create TRIGGER and FUNCTION for MarketModel
-    session.execute('''
+    session.execute(
+        """
         CREATE OR REPLACE FUNCTION check_upsert_market() RETURNS TRIGGER AS $check_upsert_market$
             DECLARE
                 is_active BOOL;
@@ -105,10 +109,12 @@ with DB.get_instance().get_session() as session:
             FOR EACH ROW
             WHEN (OLD.is_active IS DISTINCT FROM NEW.is_active)
             EXECUTE FUNCTION check_upsert_market();
-    ''')
+    """
+    )
 
     # Create TRIGGER and FUNCTION for SelectionModel
-    session.execute('''
+    session.execute(
+        """
         CREATE OR REPLACE FUNCTION check_upsert_selection() RETURNS TRIGGER AS $check_upsert_selection$
             DECLARE
                 is_active BOOL;
@@ -135,4 +141,5 @@ with DB.get_instance().get_session() as session:
             FOR EACH ROW
             WHEN (OLD.is_active IS DISTINCT FROM NEW.is_active)
             EXECUTE FUNCTION check_upsert_selection();
-    ''')
+    """
+    )

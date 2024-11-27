@@ -1,6 +1,7 @@
-psycopg2==2.9.3
-pur==7.0.0
-pylint==2.13.9
-pylint-plugin-utils==0.7
-SQLAlchemy==1.4.36
-sqlalchemy-utils==0.38.2
+pre-commit==4.0.1
+psycopg2==2.9.10
+pur==7.3.2
+pylint==3.3.1
+pylint-plugin-utils==0.8.2
+SQLAlchemy==2.0.36
+sqlalchemy-utils==0.41.2
