@@ -4,3 +4,4 @@ __pycache__/
 **/__pycache__/
 */__pycache__/
 .mypy_cache
+pylint_report.txt

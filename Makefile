@@ -7,7 +7,7 @@ clean:
 
 install:
 	pip install -r requirements.txt
-	pre-commit install --hook-type commit-msg
+	pre-commit install
 	pre-commit autoupdate
 	python init_db.py
 
